@@ -1,0 +1,6 @@
+{
+    "python.defaultInterpreterPath": "C:/Users/34699/AppData/Local/Programs/Python/Python312/python.exe",
+    "python.analysis.extraPaths": [
+        "./src"
+    ]
+}
