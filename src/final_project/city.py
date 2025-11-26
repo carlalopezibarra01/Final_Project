@@ -28,7 +28,7 @@ class City:
 
         self.record_rates()
 
-    def record_rates(self): #necessary for graph 2 version 1
+    def record_rates(self):
         areas = {0: [], 1: [], 2: [], 3: []}
         for p in self.places:
             areas[p.area].append(p.rate)
@@ -104,4 +104,4 @@ class City:
             h.update_profits()
 
         self.clear_market()
-        self.record_rates() #necessary for graph 2 version 1
+        self.record_rates()
