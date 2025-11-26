@@ -24,22 +24,22 @@ history_v1 = run_simulation(True, "v1")
 
 plt.figure(figsize=(14, 7))
 for area in [0, 1, 2, 3]:
-    plt.plot(history_v0[area], label=f"Area {area} - v0")
+    plt.plot(history_v0[area], label=f"Area {area}")
 plt.xlabel("Month")
 plt.ylabel("Average Rate")
 plt.title("Average Rate per Area Over Time (Original Rule v0)")
-plt.legend()
+plt.legend(title="Areas")
 plt.tight_layout()
 plt.savefig("reports/graph2_v0.png")
 plt.close()
 
 plt.figure(figsize=(14, 7))
 for area in [0, 1, 2, 3]:
-    plt.plot(history_v1[area], label=f"Area {area} - v1")
+    plt.plot(history_v1[area], label=f"Area {area}")
 plt.xlabel("Month")
 plt.ylabel("Average Rate")
 plt.title("Average Rate per Area Over Time (Modified Rule v1)")
-plt.legend()
+plt.legend(title="Areas")
 plt.tight_layout()
 plt.savefig("reports/graph2_v1.png")
 plt.close()
@@ -65,13 +65,27 @@ for h in wealth_city.hosts:
     areas.append(h.area)
 
 plt.figure(figsize=(12, 6))
+
 order = sorted(range(len(wealth)), key=lambda i: wealth[i])
-plt.bar(range(len(wealth)), [wealth[i] for i in order], color=["C" + str(areas[i]) for i in order])
+
+colors = ["C" + str(areas[i]) for i in order]
+plt.bar(range(len(wealth)), [wealth[i] for i in order], color=colors)
+
 plt.xlabel("Host")
 plt.ylabel("Total Wealth")
 plt.title("Wealth per Host")
+
+from matplotlib.patches import Patch
+legend_elements = [
+    Patch(facecolor="C0", label="Area 0"),
+    Patch(facecolor="C1", label="Area 1"),
+    Patch(facecolor="C2", label="Area 2"),
+    Patch(facecolor="C3", label="Area 3")
+]
+
+plt.legend(handles=legend_elements, title="Areas")
 plt.tight_layout()
 plt.savefig("reports/graph1.png")
 plt.close()
 
-print("Simulation finished. Graphs generated in reports/ file")
+print("Simulation finished. Graphs generated in reports/")
